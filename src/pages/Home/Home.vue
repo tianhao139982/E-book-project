@@ -10,15 +10,61 @@
                 <button class="btn btn-primary" @click="$router.push('/books')">立即开始探索</button>
             </div>
         </div>
+        <div class="out">
+            <ve-line :data="chartData"></ve-line>
+        </div>
+        <div class="out">
+            <ve-bar :data="chartData"></ve-bar>
+        </div>
+        <div class="out">
+            <ve-pie :data="chartData"></ve-pie>
+        </div>
+        <div class="out">
+            <ve-ring :data="chartData"></ve-ring>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {
+import VeLine from 'v-charts/lib/line';
+import VeBar from 'v-charts/lib/bar';
+import VePie from 'v-charts/lib/pie';
+import VeRing from 'v-charts/lib/ring';
+export default {
         name: "Home",
+        components: { 
+            VeLine,
+            VeBar,
+            VePie,
+            VeRing
+        },
         data() {
             return {
-                imgUrl: '../../../public/images/home.png'
+                imgUrl: '../../../public/images/home.png',
+                chartData : {
+                    columns: ['日期', '销售量'],
+                    rows: [
+                        { '日期': '1月1日', '销售量': 123 },
+                        { '日期': '1月2日', '销售量': 1223 },
+                        { '日期': '1月3日', '销售量': 2123 },
+                        { '日期': '1月4日', '销售量': 4123 },
+                        { '日期': '1月5日', '销售量': 3123 },
+                        { '日期': '1月6日', '销售量': 7123 }
+                    ]
+                }
+            }
+        },
+        mounted(){
+            this.chartData = {
+                columns: ['日期', '销售量'],
+                rows: [
+                    { '日期': '1月1日', '销售量': 123 },
+                    { '日期': '1月2日', '销售量': 1223 },
+                    { '日期': '1月3日', '销售量': 2123 },
+                    { '日期': '1月4日', '销售量': 4123 },
+                    { '日期': '1月5日', '销售量': 3123 },
+                    { '日期': '1月6日', '销售量': 7123 }
+                ]
             }
         }
     }
@@ -43,5 +89,9 @@
         height: 600px;
         background:url('../../../public/images/home.png');
         background-size:cover;
+    }
+    .out{
+        background-color: #ffffff;
+        margin-top:250px;
     }
 </style>
